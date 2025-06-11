@@ -3,7 +3,7 @@ const router=express.Router();
 const User=require("../model/User");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
-const { createSelectorHook } = require("react-redux");
+
 const secret_key="Ajinky123";
 router.post("/api/signup",async(req,res)=>{
 try{
