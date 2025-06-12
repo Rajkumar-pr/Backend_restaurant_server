@@ -23,7 +23,7 @@ return res.status(201).json({message:"Signup[ done successfully"});
 
 catch(err){
    
-return res.status(501).json({message:"Server Side Error"});
+return res.status(501).json({message:"Server Side Error", error: err.message});
 }
 })
 router.post("/api/login",async(req,res)=>{
