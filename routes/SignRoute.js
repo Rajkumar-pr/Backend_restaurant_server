@@ -16,9 +16,9 @@ if(!name || !username || !role || !email || !password)
 const user=new User({ name, username, role, email, password });
 
 await user.save();
+const token=jwt.sign({username},secret_key,{expiresIn:'2h'});
+return res.status(200).json({meassge:"Signup Done Successfull",token});
 
-
-return res.status(201).json({message:"Signup[ done successfully"});
 }
 
 catch(err){
@@ -65,3 +65,4 @@ catch(err)
 })
 
 module.exports=router;
+
