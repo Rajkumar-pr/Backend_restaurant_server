@@ -23,13 +23,13 @@ const feedUpdate = async (req, res, next) => {
     let decoded;
     try {
       decoded = jwt.verify(token, secret_key);
-      req.user = decoded.user;
+      req.user = decoded;
     } catch (err) {
       return res.status(401).json({ message: "Invalid or expired token" });
     }
 
     // Check if user exists in DB
-    const user = await User.findOne({ username: decoded.user.username });
+    const user = await User.findOne({ username: decoded.username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
