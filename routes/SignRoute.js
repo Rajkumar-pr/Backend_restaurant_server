@@ -39,7 +39,7 @@ if(!isMatch)
 {
    return res.status(401).json({message:"Enter Correct credentails"});
 }
-const token=jwt.sign({username:user.username,role.user.role},secret_key,{expiresIn:'2h'});
+const token=jwt.sign({username:user.username,role:user.role,password:user.password},secret_key,{expiresIn:'2h'});
 return res.status(200).json({meassge:"Login Done Successfull",token});
     }
     catch(err)
@@ -65,6 +65,7 @@ catch(err)
 })
 
 module.exports=router;
+
 
 
 
