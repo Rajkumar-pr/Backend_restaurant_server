@@ -2,7 +2,7 @@ const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const password="Ajinkya321";
-const secret_key = "Ajinkya123";
+const secret_key = "my-super-secret-key-1234567890!@#$%^&*()";
 
 
 
@@ -23,13 +23,13 @@ const feedUpdate = async (req, res, next) => {
     let decoded;
     try {
       decoded = jwt.verify(token, secret_key);
-      req.user = decoded;
+      req.user = decoded.user;
     } catch (err) {
       return res.status(401).json({ message: "Invalid or expired token" });
     }
 
     // Check if user exists in DB
-    const user = await User.findOne({ username: decoded.username });
+    const user = await User.findOne({ username: decoded.user.username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
