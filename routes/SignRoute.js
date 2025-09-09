@@ -4,7 +4,7 @@ const User=require("../model/User");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 
-const secret_key="Ajinky123";
+const secret_key="my-super-secret-key-1234567890!@#$%^&*()";
 router.post("/api/signup",async(req,res)=>{
 try{
 const {name,username,role,email,password}=req.body;
@@ -16,7 +16,7 @@ if(!name || !username || !role || !email || !password)
 const user=new User({ name, username, role, email, password });
 
 await user.save();
-const token=jwt.sign({username},secret_key,{expiresIn:'2h'});
+const token=jwt.sign({username:user.username,role:user.role},secret_key,{expiresIn:'2h'});
 return res.status(200).json({meassge:"Signup Done Successfull",token});
 
 }
@@ -39,7 +39,7 @@ if(!isMatch)
 {
    return res.status(401).json({message:"Enter Correct credentails"});
 }
-const token=jwt.sign({username},secret_key,{expiresIn:'2h'});
+const token=jwt.sign({username:user.username,role.user.role},secret_key,{expiresIn:'2h'});
 return res.status(200).json({meassge:"Login Done Successfull",token});
     }
     catch(err)
@@ -65,4 +65,5 @@ catch(err)
 })
 
 module.exports=router;
+
 
