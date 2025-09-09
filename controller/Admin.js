@@ -35,14 +35,10 @@ const feedUpdate = async (req, res, next) => {
     }
 
 
-    if (req.user.role !== "admin") {
+    if (req.user.role !== "Admin") {
       return res.status(403).json({ message: "Access denied: Admins only" });
     }
-const is_match=await bcrypt.compare(password,req.user.password);
-if(!is_match)
-{
-    return res.status(401).json({message:"Invalid password"});
-}
+
     next();
   } catch (err) {
     console.error("Middleware error:", err);
