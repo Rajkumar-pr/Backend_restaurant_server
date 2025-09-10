@@ -3,7 +3,7 @@ const express = require("express");
 const router4 = express.Router(); // ✅ Capital R
 const Feed = require("../model/Feedback"); // ✅ Ensure correct path
 const feedUpdate=require("../controller/Admin")
-router4.patch("/api/reviews/:id",feedUpdate, async (req, res) => {
+router4.patch("/api/reviews/:id", async (req, res) => {
   try {
     const id = req.params.id;
 
